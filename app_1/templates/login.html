@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block login_page %}
+    <form method="POST">
+    {{ form }}
+    {% csrf_token %}
+    <input type="submit" value="login">
+    </form>
+<br>
+    <table>
+    <tr>
+        <th>Role</th>
+        <th>Username</th>
+        <th>Password</th>
+    </tr>
+    <tr>
+        <td>Administrator</td>
+        <td>admin</td>
+        <td>admin</td>
+    </tr>
+    <tr>
+        <td>Profesor</td>
+        <td>prof</td>
+        <td>profesor</td>
+    </tr>
+    <tr>
+        <td>Student - redovni</td>
+        <td>red_stud</td>
+        <td>redovnistudent</td>
+    </tr>
+    <tr>
+        <td>Student - izvanredni</td>
+        <td>izv_stud</td>
+        <td>izvanrednistudent</td>
+    </tr>
+    </table>
+{% endblock %}

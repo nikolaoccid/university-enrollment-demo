@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block usersonsubject %}
+    <div>
+    <h3>{{ predmet.name}}</h3>
+    <h3>Redovni</h3>
+    {% for status, korisnici in red_grupirani_studenti.items %}
+        <h3>{{ status }}</h3>
+        <table>
+            <tr>
+                <th>Ime korisnika</th>
+                <th>Status</th>
+                <th>Akcija</th>
+            </tr>
+            {% for korisnik in korisnici %}
+                <tr>
+                <td>{{ korisnik.student__username }}</td>
+                <td>{{ korisnik.status_upisa }}</td>
+                <td>
+                        <a href="{% url 'changestatus' userid=korisnik.student_id subjectid=predmet.id status='polozio' %}">Polozio</a>
+                        <a href="{% url 'changestatus' userid=korisnik.student_id subjectid=predmet.id status='izgubio' %}">Izgubio potpis</a>
+                </td>
+                </tr>
+        {% endfor %}
+        </table>
+    {% endfor %}
+    </div>
+
+        <div>
+    <h3>Izvanredni</h3>
+    {% for status, korisnici in izv_grupirani_studenti.items %}
+        <h3>{{ status }}</h3>
+        <table>
+            <tr>
+                <th>Ime korisnika</th>
+                <th>Status</th>
+                <th>Akcija</th>
+            </tr>
+            {% for korisnik in korisnici %}
+                <tr>
+                <td>{{ korisnik.student__username }}</td>
+                <td>{{ korisnik.status_upisa }}</td>
+                <td>
+                        <a href="{% url 'changestatus' userid=korisnik.student_id subjectid=predmet.id status='polozio' %}">Polozio</a>
+                        <a href="{% url 'changestatus' userid=korisnik.student_id subjectid=predmet.id status='izgubio' %}">Izgubio potpis</a>
+                </td>
+                </tr>
+        {% endfor %}
+        </table>
+    {% endfor %}
+    </div>
+{% endblock %}

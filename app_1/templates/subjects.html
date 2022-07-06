@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block subjects %}
+    {% if request.user.is_superuser %}
+    <a href="{% url 'addsubject' %}">Dodaj predmet</a>
+    {% endif %}
+    <table>
+    <tr>
+        <th>Ime predmeta</th>
+        <th>Kod</th>
+        <th>Program</th>
+        <th>ECTS</th>
+        <th>Semestar redovni</th>
+        <th>Semestar izvanredni</th>
+        <th>Izborni</th>
+        <th>Nositelj</th>
+        <th>Akcija</th>
+
+    </tr>
+    {% for subject in data %}
+        <tr>
+            <td>{{ subject.name }}</td>
+            <td>{{ subject.kod }}</td>
+            <td>{{ subject.program }}</td>
+            <td>{{ subject.ects }}</td>
+            <td>{{ subject.sem_red }}</td>
+            <td>{{ subject.sem_izv }}</td>
+            <td>{{ subject.izborni }}</td>
+            <td>{{ subject.nositelj }}</td>
+            <td>
+                <a href="{% url 'usersonsubject' subjectid=subject.id %}">Popis studenata</a>
+                {% if request.user.is_superuser %}
+                <a href="{% url 'editsubject' subjectid=subject.id %}">Uredi</a>
+                <a href="{% url 'editprofesor' subjectid=subject.id %}">Promijeni nositelja</a>
+                <a href="{% url 'deletesubject' subjectid=subject.id %}">Izbrisi</a>
+                {% endif %}
+            </td>
+        </tr>
+
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block enrollmentform %}
+    <h1>Upisni list za {{ student.username }}</h1>
+    <div>
+    <h3>Predmeti dostupni za upis</h3>
+    <table>
+        <tr>
+            <th>Ime predmeta</th>
+            <th>Akcija</th>
+        </tr>
+        {% for pred in predmeti_za_upis %}
+            <tr>
+                <td>{{ pred.name }}</td>
+                <td>
+                    <a href="{% url 'enroll' userid=student.id subjectid=pred.id %}">Upisi</a>
+                </td>
+            </tr>
+    {% endfor %}
+    </table>
+    </div>
+
+    <div>
+    <h3>Upisani predmeti</h3>
+    {% for semestar, predmeti in grupirani_upisani_predmeti.items %}
+        <h3>{{ semestar }}. semestar</h3>
+        <table>
+            <tr>
+                <th>Ime predmeta</th>
+                <th>Status</th>
+                <th>Akcija</th>
+            </tr>
+            {% for predmet in predmeti %}
+                <tr>
+                <td>{{ predmet.predmet_name }}</td>
+                <td>{{ predmet.status_upisa }}</td>
+                <td>
+                    {% if predmet.status_upisa == 'upisan' %}
+                        <a href="{% url 'disenroll' userid=student.id subjectid=predmet.predmet_id %}">Ispisi</a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'changestatus' userid=student.id subjectid=predmet.predmet_id status='polozio' %}">Polozio</a>
+                        <a href="{% url 'changestatus' userid=student.id subjectid=predmet.predmet_id status='izgubio' %}">Izgubio potpis</a>
+                    {% endif %}
+                </td>
+                </tr>
+        {% endfor %}
+        </table>
+    {% endfor %}
+    </div>
+{% endblock %}

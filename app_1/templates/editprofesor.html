@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block editprofesor %}
+    <form method="POST">
+    {{ form }}
+    {% csrf_token %}
+<input type="submit" value="Promijeni nositelja">
+</form>
+{% endblock%}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block users %}
+    <a href="{% url 'register' %}">Dodaj novog korisnika</a>
+    <table>
+    <tr>
+        <th>Korisničko ime</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Akcija</th>
+
+    </tr>
+    {% for user in users %}
+    <tr>
+    <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.role }}</td>
+    <td>{{ user.status }}</td>
+    <td>
+    <a href="{% url 'edituser' userid=user.id %}">Uredi</a>
+    {% if user.role == 'stu' %}
+        <a href="{% url 'enrollmentform' userid=user.id %}">Upisni list</a>
+    {% endif %}
+    </td>
+    {% endfor %}
+    </tr>
+    </table>
+{% endblock %}
