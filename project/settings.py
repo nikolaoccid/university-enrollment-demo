@@ -29,7 +29,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'enrollment-demo.herokuapp.com', 'enrollment-demo.nikoc.uk']
 
-CSRF_TRUSTED_ORIGINS = ['enrollment-demo.nikoc.uk']
+CSRF_TRUSTED_ORIGINS = ['https://enrollment-demo.nikoc.uk', 'https://*.nikoc.uk']
 
 # Application definition
 
