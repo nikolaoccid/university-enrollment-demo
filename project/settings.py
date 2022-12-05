@@ -27,9 +27,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'enrollment-demo.herokuapp.com', 'enrollment-demo.nikoc.uk']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'enrollment-demo.herokuapp.com', 'enrollment-demo.nikoc.uk', '*']
 
-CSRF_TRUSTED_ORIGINS = ['https://enrollment-demo.nikoc.uk', 'https://*.nikoc.uk']
+CSRF_TRUSTED_ORIGINS = ['https://enrollment-demo.nikoc.uk', 'https://*.nikoc.uk', '*']
 
 # Application definition
 
